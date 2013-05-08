@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'slim'
+require 'json'
 require 'coffee-script'
 require "sinatra/reloader" if development?
 
@@ -13,6 +14,10 @@ end
 
 get '/' do
   slim :index
+end
+
+get '/filename.json' do
+  `ls public/data/`.split("\n").to_json
 end
 
 get '/coffee/*.js' do |name|
